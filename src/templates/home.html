@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <form method="get">
+        <div class="mx-auto text-center d-flex ">
+            <input class="form-control" name="recipe" placeholder="Search" style="width:400px">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    </div>
+    
+   
+    <div class="container mt-5">
+        {% if recipe %}
+        <table>
+            <thead>
+            <tr>
+            <th style="width:30%">Recipe Name</th>
+            <th style="width:40%">Description</th>
+            <th style="width:30%">Image</th>
+            <th style="width:30%">View</th>
+
+
+            </tr>
+            </thead>
+
+            <tbody>
+                {% for r in recipe %}
+               
+                <tr class="pt-4">
+
+                <td>{{r.name}}</td>
+                <td>{{r.desc|truncatechars:250}}</td>
+                <td><img src="{{r.image}}" class="p-2" style="height:100px"></td>
+
+
+                <td><a href="{{r.id}}" class="btn btn-success">View</a></td>
+                </tr>
+               
+                {% endfor %}
+                <hr>
+            </tbody>
+
+            
+        </table>
+        {% else %}
+        <p class="text-center"> No recipe found.. Try something else</p>
+        {% endif %}
+
+    </div>
+
+
+
+    <footer class="bg-dark p-2 mt-5">
+        <p class="text-center text-white">Django Redis</p>
+    </footer>
+    
+</body>
+</html>
